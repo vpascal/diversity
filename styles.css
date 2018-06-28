@@ -1,26 +1,36 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
-
-#pict{
-
-  margin-bottom: 10px;
+h1{
+	color: #848282 !important;
 }
 
 
 img{
-  height: 300px;
-  width: 300px;
-  margin-right:-170px;
-  margin-left: 80px;
+  width: 75%;
+
 }
 
 .name {
-  font-family: 'Raleway', sans-serif;
-  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  font-size: large;
 }
 
-.stats {
+.female {
+  font-family: 'Roboto', sans-serif;
   font-size: large;
-  font-weight: 700;
+  font-weight: bold;
+  padding-right: 25px;
 
+}
+
+.male {
+  font-family: 'Roboto', sans-serif;
+  font-size: large;
+  font-weight: bold;
+  padding-right: 40px;
+}
+
+.tg{
+	color: #848282;
 }
