@@ -1,39 +1,124 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head>  
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" type="text/css" href="styles.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript" src="../dist/js/percircle.js"></script>
+  <link rel="stylesheet" href="../dist/css/percircle.css">
+
 
 </head>
 <body>
 
-<h1>Diversity</h1>
+<div class='container-fluid'>
 
-<div class='col-sm-5'>
-  <table class="tg">
-  <col style="width:30%">
-  <col style="width:30%">
-  <col style="width:40%">
+<h1 class="text-center">Diversity</h1>
+
+<div class='row'>
+
+  <div class='col-sm-4 col-lg-4'>
+    <div> <h3 class="text-center"> Gender </h3> </div>
+    <table class="tg">
+    <col style="width:30%">
+    <col style="width:30%">
+    <col style="width:40%">
+    <tr>
+      <th class="tg-yw4l"></th>
+      <th class="tg-yw4l"><img src='women.svg'</th>
+      <th class="tg-yw4l"><img src='men.svg'></th>
+    </tr>
+    <tr>
+      <td class="tg-yw4l name">Patton College</td>
+      <td class="tg-yw4l female" align="center">62.3%</td>
+      <td class="tg-yw4l male" align="center">35.7%</td>
+    </tr>
+    <tr>
+      <td class="tg-yw4l name">Ohio University</td>
+      <td class="tg-yw4l female" align="center">50.2%</td>
+      <td class="tg-yw4l male" align="center">49.8%</td>
+    </tr>
+  </table>
+      </div>
+
+  <div class="col-sm-5 col-lg-5">
+    <div> <h3 class="text-center"> Race</h3> </div>
+  <table class='w3-table w3-large'>
   <tr>
-    <th class="tg-yw4l"></th>
-    <th class="tg-yw4l"><img src='women.svg'</th>
-    <th class="tg-yw4l"><img src='men.svg'></th>
+    <th></th>
+    <th>Patton College</th>
+    <th>Ohio University</th>
   </tr>
-  <tr>
-    <td class="tg-yw4l name">Patton College</td>
-    <td class="tg-yw4l female" align="center">62.3%</td>
-    <td class="tg-yw4l male" align="center">35.7%</td>
+  <tr class="w3-hover-blue">
+    <td>Native/Alaskan Am</td>
+    <td class='w3-centered'>1.2</td>
+    <td class='w3-centered'>0.3</td>
   </tr>
-  <tr>
-    <td class="tg-yw4l name">Ohio University</td>
-    <td class="tg-yw4l female" align="center">50.2%</td>
-    <td class="tg-yw4l male" align="center">49.8%</td>
+  <tr class="w3-hover-blue">
+    <td>Asian Am</td>
+    <td>5.4</td>
+    <td>6.1</td>
+  </tr>
+  <tr class="w3-hover-blue">
+    <td>African Am</td>
+    <td>8.3</td>
+    <td>3.7</td>
+  </tr>
+  <tr class="w3-hover-blue">
+    <td>Hispanic</td>
+    <td>0.6</td>
+    <td>2.7</td>
+  </tr>
+  <tr class="w3-hover-blue">
+    <td>International</td>
+    <td>1.8</td>
+    <td>1.5</td>
+  </tr>
+  <tr class="w3-hover-blue">
+    <td>Two or More</td>
+    <td>1.2</td>
+    <td>1.2</td>
+  </tr>
+  <tr class="w3-hover-blue">
+    <td>Unknown</td>
+    <td>18</td>
+    <td>10</td>
+  </tr>
+  <tr class="w3-hover-blue">
+    <td>White</td>
+    <td>62.5</td>
+    <td>74.2</td>
   </tr>
 </table>
-    </div>
-   </div> 
+
+</div>
+<div class='col-sm-3 col-lg-3'>
+  <div> <h3 class="text-center"> Percent Minorities </h3> </div>
+  <div id="patton" class="big"></div>
+  <div id="ou" class="big"></div>
+</div>
+</div>
+
+</div>
+<script type="text/javascript">
+    $(function(){
+        $("#patton").percircle({
+          progressBarColor: "#CC3366",
+          percent: 18.5
+        });
+    });
 
 
+    $(function(){
+      $("#ou").percircle({
+          percent: 15.3
+        });
+    });
+
+
+</script>
 
 </body>
 </html>
