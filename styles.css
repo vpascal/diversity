@@ -39,3 +39,15 @@ img{
 	margin-bottom: 50px;
 	margin-top: 25px;
 }
+
+#pcoe {
+    position: absolute;
+    bottom: 50%;
+    left: 25%;
+}
+
+#ou_circle {
+    position: absolute;
+    bottom: 5%;
+    left: 25%;
+}
