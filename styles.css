@@ -1,4 +1,6 @@
 
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,700');
+
 @media screen and (min-width: 1400px) {
   .container-fluid {
     width: 75% !important;
@@ -6,10 +8,30 @@
 }
 
 
-body{
-	color: #848282 !important;
+body {
+  color: black !important;
+  font-family: 'Roboto Mono', monospace;
+  
 }
 
+.text-center {
+
+  font-family: 'Roboto Mono', monospace;
+}
+
+
+.w3-table, th, td {
+
+  font-family: 'Roboto Mono', monospace;
+
+
+}
+
+.header{
+
+  background-color: rgb(255, 210, 0);
+  color: black;
+}
 
 img{
   width: 75%;
@@ -35,7 +57,7 @@ img{
 }
 
 .tg{
-	color: #848282;
+	color: black;
 }
 .percircle>span {
   color: #b71616 !important;
