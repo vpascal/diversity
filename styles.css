@@ -17,7 +17,7 @@ body {
 
 h1{
   padding-bottom: 20px;
-  padding-top: 20px;
+  padding-top: 5px;
 }
 
 .text-center {
@@ -76,21 +76,29 @@ img{
 
 #patton, #ou{
 
-	margin-bottom: 50px;
-	margin-top: 25px;
-
+  margin-bottom: 50px;
+  margin-top: 25px;
+  margin-right: 35px;
+  margin-left: 55px;
 }
 
 #pcoe {
     position: absolute;
     bottom: 50%;
     left: 25%;
+    margin-left: 20px;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
+
 }
 
 #ou_circle {
     position: absolute;
     bottom: 5%;
     left: 25%;
+    margin-left: 20px;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
 }
 
 
