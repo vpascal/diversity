@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>  
+   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" type="text/css" href="styles.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -31,7 +32,7 @@
 -->
 <div class='row'>
 
-  <div class='col-sm-5 col-lg-5'>
+  <div class='col-xs-12 col-sm-6 col-lg-5 zoom' id ='people'>
     <div><h3 class="text-center">Gender <i class="fas fa-transgender"></i></h3> </div>
     <table class="tg">
     <col style="width:30%">
@@ -55,7 +56,7 @@
   </table>
       </div>
 
-  <div class="col-sm-4 col-lg-4">
+  <div class="col-xs-12 col-sm-6 col-lg-4 zoom" id='mytable'>
     <div> <h3 class="text-center">Race & Ethnicity <i class="fas fa-globe"></i></h3> </div>
   <table class='w3-table-all w3-border-0 w3-large'>
   <tr>
@@ -107,7 +108,7 @@
 </table>
 
 </div>
-<div class='col-sm-3 col-lg-3'>
+<div class='col-xs-12 col-sm-6 col-lg-3 zoom' id ='charts'>
   <div> <h3 class="text-center">% Non-White <i class="fas fa-users"></i></h3> </div>
   <div id="patton" class="medium"></div>
   <h6 id='pcoe'>PCOE</h6>
@@ -119,23 +120,14 @@
 </div>
 <script type="text/javascript">
 
- $('#staff').click(function(){
-      $('#pcoe_female').text('100%');
-      $('#pcoe_male').text('100%');
-      $('#ou_female').text('100%');
-      $('#ou_male').text('100%');
-
-     });
-
-    $(function(){
+$(function(){
         $("#patton").percircle({
           progressBarColor: "#CC3366",
           percent: 18.5
         });
     });
 
-
-    $(function(){
+$(function(){
       $("#ou").percircle({
           percent: 15.3
         });
