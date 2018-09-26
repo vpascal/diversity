@@ -10,7 +10,7 @@
 
 body {
   color: black !important;
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Roboto Mono', monospace !important;
   
 }
 
@@ -108,3 +108,39 @@ img{
   width: 50%;
   padding-bottom: 25px;
 }
+
+#faculty {
+  font-family: 'Roboto Mono', monospace;
+    background-image: url(professor.svg);
+    background-color: transparent; 
+    background-repeat: no-repeat; 
+    background-position: 0px 0px;  
+    vertical-align: middle;
+    margin: 0 20px 20px 20px;
+}
+  
+  #both {
+    font-family: 'Roboto Mono', monospace;
+      background-image: url(all.svg);
+      background-color: transparent; 
+      background-repeat: no-repeat; 
+      background-position: 0px 0px;  
+      vertical-align: middle;
+      margin: 0 20px 20px 20px;
+      
+    }
+
+    #staff {
+      font-family: 'Roboto Mono', monospace;
+        background-image: url(staff.svg);
+        background-color: transparent; 
+        background-repeat: no-repeat; 
+        background-position: 0px 0px;  
+        vertical-align: middle;
+        margin: 0 20px 20px 20px;
+      }
+
+
+      #buttonnav{
+        padding-bottom: 20px;
+      }
