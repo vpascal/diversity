@@ -40,7 +40,8 @@ function reader (file) {
   })
 }
 
-var ids =['#pcoe_female','#pcoe_male','#ou_female','#ou_male'];
+var ids =['pcoe_female','pcoe_male','ou_female','ou_male'];
+
 
 reader('data/faculty.csv');
 
@@ -48,10 +49,11 @@ document.getElementById('faculty').addEventListener('click', function(){
   d3.select('#mytable').select('table').remove();
   reader('data/faculty.csv');
 
-  var faculty = ['61.3%','38.7%','48.1%','51.9%'];
+  var faculty = [61.3,38.7,48.1,51.9];
   var i;
   for (i=0; i<ids.length; i++){
-  d3.select(ids[i]).html(faculty[i]);
+  var countfaculty = new CountUp(ids[i],0,faculty[i],1);
+  d3.select(ids[i]).html(countfaculty.start());
   }
 })
 
@@ -59,10 +61,11 @@ document.getElementById('staff').addEventListener('click', function(){
   d3.select('#mytable').select('table').remove();
   reader('data/staff.csv');
  
-  var staff = ['78.0%','22.0%','56.2%','43.8%'];
+  var staff = [78.0,22.0,56.2,43.8];
   var i;
   for (i=0; i<ids.length; i++){
-  d3.select(ids[i]).html(staff[i]);
+  var countstaff = new CountUp(ids[i],0,staff[i],1);
+  d3.select(ids[i]).html(countstaff.start());
   }
   
 
@@ -72,34 +75,20 @@ document.getElementById('both').addEventListener('click', function(){
   d3.select('#mytable').select('table').remove();
   reader('data/both.csv');
 
-  var both = ['64.6%','35.4%','52.9%','47.1%'];
+  var both = [64.6,35.4,52.9,47.1];
   var i;
   for (i=0; i<ids.length; i++){
-  d3.select(ids[i]).html(both[i]);
+  var counter = new CountUp(ids[i],0,both[i],1);
+  d3.select(ids[i]).html(counter.start());
   }
 })
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 $(function(){
-    $("#patton").percircle({
-      progressBarColor: "#CC3366",
-      percent: 18.5
-    });
+  $("#patton").percircle({
+    progressBarColor: "#CC3366",
+    percent: 20.1
+  });
 });
 
 
