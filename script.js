@@ -58,6 +58,7 @@ document.getElementById('faculty').addEventListener('click', function(){
 })
 
 document.getElementById('staff').addEventListener('click', function(){
+
   d3.select('#mytable').select('table').remove();
   reader('data/staff.csv');
  
@@ -72,6 +73,7 @@ document.getElementById('staff').addEventListener('click', function(){
 })
 
 document.getElementById('both').addEventListener('click', function(){
+
   d3.select('#mytable').select('table').remove();
   reader('data/both.csv');
 

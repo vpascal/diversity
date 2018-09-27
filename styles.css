@@ -109,6 +109,14 @@ img{
   padding-bottom: 25px;
 }
 
+.mybutton {
+  border: none;
+  outline: none;
+  padding: 10px 16px;
+  background-color: white;
+  cursor: pointer;
+}
+
 #faculty {
   font-family: 'Roboto Mono', monospace;
     background-image: url(professor.svg);
@@ -117,6 +125,7 @@ img{
     background-position: 0px 0px;  
     vertical-align: middle;
     margin: 0 20px 20px 20px;
+    background-size: 30px;
 }
   
   #both {
@@ -127,6 +136,7 @@ img{
       background-position: 0px 0px;  
       vertical-align: middle;
       margin: 0 20px 20px 20px;
+      background-size: 30px;
       
     }
 
@@ -138,9 +148,16 @@ img{
         background-position: 0px 0px;  
         vertical-align: middle;
         margin: 0 20px 20px 20px;
+        background-size: 30px;
       }
 
 
       #buttonnav{
         padding-bottom: 20px;
       }
+
+    
+      .active, .mybutton:hover {
+          border-bottom: 1px solid black !important;
+      }
+    
