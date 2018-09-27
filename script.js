@@ -1,4 +1,4 @@
-
+document.getElementById('faculty').focus();
 
 
 function tabulate (data,columns) {
