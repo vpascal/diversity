@@ -45,14 +45,14 @@ var ids =['pcoe_female','pcoe_male','ou_female','ou_male'];
 
 reader('data/faculty.csv');
 
+var faculty_data = [61.3,38.7,48.1,51.9];
+
 document.getElementById('faculty').addEventListener('click', function(){
   d3.select('#mytable').select('table').remove();
   reader('data/faculty.csv');
-
-  var faculty = [61.3,38.7,48.1,51.9];
   var i;
   for (i=0; i<ids.length; i++){
-  var countfaculty = new CountUp(ids[i],0,faculty[i],1);
+  var countfaculty = new CountUp(ids[i],0,faculty_data[i],1);
   d3.select(ids[i]).html(countfaculty.start());
   }
 })
@@ -85,6 +85,22 @@ document.getElementById('both').addEventListener('click', function(){
   }
 })
 
+ var demo = new CountUp('pcoe_female', 0, faculty_data[0], 1);
+ var demo1 = new CountUp('pcoe_male', 0, faculty_data[1], 1);
+ var demo2 = new CountUp('ou_female', 0, faculty_data[2], 1);
+ var demo3 = new CountUp('ou_male', 0, faculty_data[3], 1);
+
+  if (!demo.error) {
+    demo.start();
+    demo1.start();
+    demo2.start();
+    demo3.start();
+  } else {
+    console.error(demo.error);
+    console.error(demo1.error);
+    console.error(demo2.error);
+    console.error(demo3.error);
+  }
 
 $(function(){
   $("#patton").percircle({
