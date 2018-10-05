@@ -42,12 +42,34 @@ function reader (file) {
 
 var ids =['pcoe_female','pcoe_male','ou_female','ou_male'];
 
+var patton_progress = 18.5;
+var ou_progress = 15.3;
+
 
 reader('data/faculty.csv');
 
 var faculty_data = [61.3,38.7,48.1,51.9];
 
 document.getElementById('faculty').addEventListener('click', function(){
+  patton_progress = 18.5;
+  ou_progress = 15.3;
+
+  $(function(){
+    $("#patton").percircle({
+      progressBarColor: "#CC3366",
+      percent: patton_progress
+    });
+  });
+  
+  
+  $(function(){
+    $("#ou").percircle({
+        percent: ou_progress
+      });
+  });
+  
+
+
   d3.select('#mytable').select('table').remove();
   reader('data/faculty.csv');
   var i;
@@ -58,6 +80,23 @@ document.getElementById('faculty').addEventListener('click', function(){
 })
 
 document.getElementById('staff').addEventListener('click', function(){
+  patton_progress = 14.6;
+  ou_progress = 9.5;
+
+  $(function(){
+    $("#patton").percircle({
+      progressBarColor: "#CC3366",
+      percent: patton_progress
+    });
+  });
+  
+  
+  $(function(){
+    $("#ou").percircle({
+        percent: ou_progress
+      });
+  });
+  
 
   d3.select('#mytable').select('table').remove();
   reader('data/staff.csv');
@@ -74,6 +113,25 @@ document.getElementById('staff').addEventListener('click', function(){
 
 document.getElementById('both').addEventListener('click', function(){
 
+  patton_progress = 17.7;
+  ou_progress = 11.9;
+
+  $(function(){
+    $("#patton").percircle({
+      progressBarColor: "#CC3366",
+      percent: patton_progress
+    });
+  });
+  
+  
+  $(function(){
+    $("#ou").percircle({
+        percent: ou_progress
+      });
+  });
+  
+
+
   d3.select('#mytable').select('table').remove();
   reader('data/both.csv');
 
@@ -83,6 +141,7 @@ document.getElementById('both').addEventListener('click', function(){
   var counter = new CountUp(ids[i],0,both[i],1);
   d3.select(ids[i]).html(counter.start());
   }
+  
 })
 
  var demo = new CountUp('pcoe_female', 0, faculty_data[0], 1);
@@ -105,13 +164,13 @@ document.getElementById('both').addEventListener('click', function(){
 $(function(){
   $("#patton").percircle({
     progressBarColor: "#CC3366",
-    percent: 20.1
+    percent: patton_progress
   });
 });
 
 
 $(function(){
   $("#ou").percircle({
-      percent: 15.3
+      percent: ou_progress
     });
 });
