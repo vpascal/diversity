@@ -28,17 +28,27 @@ function tabulate (data,columns) {
       })
       .enter()
       .append('td')
-      .text(function (d) { return d.value})
+      .text(function (d) { 
+        if(typeof d.value == 'number'){ var temp = new CountUp(this,0,d.value,1); temp.start()}
+        else{return d.value}
+      })
 
   return table;
 }
 
 function reader (file) {
   d3.csv(file,function (data) {
+    data.forEach(function(d) {
+      d[''] = d[''];
+      d["Patton College"] = +d["Patton College"];
+      d["Ohio Univesity"] = +d["Ohio Univesity"];
+    });
 	var columns = ['','Patton College','Ohio Univesity']
   tabulate(data,columns)
   })
 }
+
+
 
 
 function updatetable (data) {
