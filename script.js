@@ -11,14 +11,14 @@ function tabulate (data,columns) {
 	  .selectAll('th')
 	    .data(columns)
       .enter()
-	  .append('th')
+	    .append('th')
       .text(function (d) { return d })
       .attr('class','header')
 
   var rows = tbody.selectAll('tr')
 	    .data(data)
 	    .enter()
-	  .append('tr')
+	    .append('tr')
 
   var cells = rows.selectAll('td')
        .data(function(row) {
@@ -27,18 +27,69 @@ function tabulate (data,columns) {
 	      })
       })
       .enter()
-     .append('td')
-      .text(function (d) { return d.value})
+      .append('td')
+      .text(function (d) { 
+        if(typeof d.value == 'number'){ var temp = new CountUp(this,0,d.value,1); temp.start()}
+        else{return d.value}
+      })
 
   return table;
 }
 
 function reader (file) {
   d3.csv(file,function (data) {
+    data.forEach(function(d) {
+      d[''] = d[''];
+      d["Patton College"] = +d["Patton College"];
+      d["Ohio Univesity"] = +d["Ohio Univesity"];
+    });
 	var columns = ['','Patton College','Ohio Univesity']
   tabulate(data,columns)
   })
 }
+
+
+
+
+function updatetable (data) {
+
+  var columns = ['race','pcoe','ou']
+  
+  d3.select(".w3-table-all tbody").selectAll('tr').remove();
+  tbody = d3.select('.w3-table-all tbody')
+  var rows = tbody.selectAll('tr')
+        .data(data)
+        .enter()
+        .append('tr')
+  
+    var cells = rows.selectAll('td')
+         .data(function(row) {
+          return columns.map(function (column) {
+            return { column: column, value: row[column] }
+          })
+        })
+        .enter()
+        .append('td')
+        .text(function (d) { 
+          if(typeof d.value == 'number'){ var temp = new CountUp(this,0,d.value,1); temp.start()}
+          else{return d.value}
+        })
+  
+    return rows
+  }
+  
+  function reader_new (file) {
+    d3.csv(file,function (d) {
+     return{
+        race: d[''],
+        pcoe: +d['Patton College'],
+        ou: +d['Ohio Univesity']
+     };
+    }, function(data){
+    updatetable(data);
+    });
+  }
+  
 
 var ids =['pcoe_female','pcoe_male','ou_female','ou_male'];
 
@@ -70,8 +121,7 @@ document.getElementById('faculty').addEventListener('click', function(){
   
 
 
-  d3.select('#mytable').select('table').remove();
-  reader('data/faculty.csv');
+  reader_new('data/faculty.csv');
   var i;
   for (i=0; i<ids.length; i++){
   var countfaculty = new CountUp(ids[i],0,faculty_data[i],1);
@@ -98,8 +148,8 @@ document.getElementById('staff').addEventListener('click', function(){
   });
   
 
-  d3.select('#mytable').select('table').remove();
-  reader('data/staff.csv');
+  
+  reader_new('data/staff.csv');
  
   var staff = [78.0,22.0,56.2,43.8];
   var i;
@@ -132,8 +182,7 @@ document.getElementById('both').addEventListener('click', function(){
   
 
 
-  d3.select('#mytable').select('table').remove();
-  reader('data/both.csv');
+  reader_new('data/both.csv');
 
   var both = [64.6,35.4,52.9,47.1];
   var i;
