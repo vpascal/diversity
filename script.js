@@ -11,14 +11,14 @@ function tabulate (data,columns) {
 	  .selectAll('th')
 	    .data(columns)
       .enter()
-	  .append('th')
+	    .append('th')
       .text(function (d) { return d })
       .attr('class','header')
 
   var rows = tbody.selectAll('tr')
 	    .data(data)
 	    .enter()
-	  .append('tr')
+	    .append('tr')
 
   var cells = rows.selectAll('td')
        .data(function(row) {
@@ -27,7 +27,7 @@ function tabulate (data,columns) {
 	      })
       })
       .enter()
-     .append('td')
+      .append('td')
       .text(function (d) { return d.value})
 
   return table;
