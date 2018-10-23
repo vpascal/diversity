@@ -1,4 +1,4 @@
-function update_t (data) {
+function updatetable (data) {
 
 var columns = ['','Patton College','Ohio Univesity']
 
@@ -22,8 +22,8 @@ var rows = tbody.selectAll('tr')
   return rows
 }
 
-function reader_t (file) {
+function reader_new (file) {
   d3.csv(file,function (data) {
-  update_t(data)
+  updatetable(data)
   })
 }
