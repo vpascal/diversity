@@ -1,135 +1,98 @@
 <!DOCTYPE html>
 <html>
-<head>  
-   <meta name="viewport" content="width=device-width">
+
+<head>
+  <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" type="text/css" href="styles.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
   <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
   <script src="https://d3js.org/d3.v3.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script type="text/javascript" src="dist/js/percircle.js"></script>
   <script type="text/javascript" src="countUp.js"></script>
   <link rel="stylesheet" href="dist/css/percircle.css">
-  
 
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+    crossorigin="anonymous">
   <style>
     @page {size: auto;}
    </style>
 </head>
+
 <body>
 
-<div class='container-fluid'>
+  <div class='container-fluid'>
 
-<h1 class="text-center">Diversity: Faculty and Staff </h1>
-<img src="tree.png" class="center" style="width:5%;">
+    <h1 class="text-center">Diversity: Faculty and Staff </h1>
+    <img src="tree.png" class="center" style="width:5%;">
 
 
-<div clas='row'>
-  <div class='w3-center buttons' id='buttonnav'>
-  <p>Click &#x2193</p>  
-  <button class="mybutton" id='faculty' type="button" >&nbsp;&nbsp;&nbsp;Faculty</button>
-  <button class="mybutton" id='staff' type="button" >&nbsp;&nbsp;&nbsp;Staff</button>
-  <button class="mybutton" id='both' type="button"> &nbsp;&nbsp;&nbsp;&nbsp;Both</button>
-  </div>
-</div>
+    <div clas='row'>
+      <div class='w3-center buttons' id='buttonnav'>
+        <p>Click &#x2193</p>
+        <button class="mybutton" id='faculty' type="button">&nbsp;&nbsp;&nbsp;Faculty</button>
+        <button class="mybutton" id='staff' type="button">&nbsp;&nbsp;&nbsp;Staff</button>
+        <button class="mybutton" id='both' type="button"> &nbsp;&nbsp;&nbsp;&nbsp;Both</button>
+      </div>
+    </div>
 
-<div class='row'>
+    <div class='row'>
 
-  <div class='col-xs-12 col-sm-6 col-lg-5 zoom' id ='people'>
-    <div><h3 class="text-center">Gender <i class="fas fa-transgender"></i></h3> </div>
-    <table class="tg">
-    <col style="width:30%">
-    <col style="width:30%">
-    <col style="width:40%">
-    <tr>
-      <th></th>
-      <th><img src='women.svg'</th>
-      <th><img src='men.svg'></th>
-    </tr>
-    <tr>
-      <td class="name">PCOE</td>
-      <td class="female" id= 'pcoe_female' align="center">62.3%</td>
-      <td class=" male" id= 'pcoe_male' align="center">35.7%</td>
-    </tr>
-    <tr>
-      <td class="name">Ohio U.</td>
-      <td class="female" id= 'ou_female' align="center">50.2%</td>
-      <td class="male" id= 'ou_male' align="center">49.8%</td>
-    </tr>
-  </table>
+      <div class='col-xs-12 col-sm-6 col-lg-5 zoom' id='people'>
+        <div>
+          <h3 class="text-center">Gender <i class="fas fa-transgender"></i></h3>
+        </div>
+        <table class="tg">
+          <col style="width:30%">
+          <col style="width:30%">
+          <col style="width:40%">
+          <tr>
+            <th></th>
+            <th><img src='women.svg' </th> <th><img src='men.svg'></th>
+          </tr>
+          <tr>
+            <td class="name">PCOE</td>
+            <td class="female" id='pcoe_female' align="center">62.3%</td>
+            <td class=" male" id='pcoe_male' align="center">35.7%</td>
+          </tr>
+          <tr>
+            <td class="name">Ohio U.</td>
+            <td class="female" id='ou_female' align="center">50.2%</td>
+            <td class="male" id='ou_male' align="center">49.8%</td>
+          </tr>
+        </table>
       </div>
 
-  <div class="col-xs-12 col-sm-6 col-lg-4 zoom" id='mytable'>
-    <div> <h3 class="text-center">Race & Ethnicity <i class="fas fa-globe"></i></h3> </div>
-    <!--
-  <table class='w3-table-all w3-border-0 w3-large'>
-  <tr>
-    <th class='header'></th></th>
-    <th class='header'>Patton College</th>
-    <th class='header'>Ohio University</th>
-  </tr>
- 
-  <tr class="w3-hover-blue">
-    <td>Native Am</td>
-    <td class='w3-center'>1.2</td>
-    <td class='w3-center'>0.3</td>
-  </tr>
-  <tr class="w3-hover-blue">
-    <td>Asian Am</td>
-    <td class='w3-center'>5.4</td>
-    <td class='w3-center'>6.1</td>
-  </tr>
-  <tr class="w3-hover-blue">
-    <td>African Am</td>
-    <td class='w3-center'>8.3</td>
-    <td class='w3-center'>3.7</td>
-  </tr>
-  <tr class="w3-hover-blue">
-    <td>Hispanic</td>
-    <td class='w3-center'>0.6</td>
-    <td class='w3-center'>2.7</td>
-  </tr>
-  <tr class="w3-hover-blue">
-    <td>International</td>
-    <td class='w3-center'>1.8</td>
-    <td class='w3-center'>1.5</td>
-  </tr>
-  <tr class="w3-hover-blue">
-    <td>Two or More</td>
-    <td class='w3-center'>1.2</td>
-    <td class='w3-center'>1.2</td>
-  </tr>
-  <tr class="w3-hover-blue">
-    <td>Unknown</td>
-    <td class='w3-center'>18</td>
-    <td class='w3-center'>10</td>
-  </tr>
-  <tr class="w3-hover-blue">
-    <td>White</td>
-    <td class='w3-center'>62.5</td>
-    <td class='w3-center'>74.2</td>
-  </tr>
-</table>
--->
-</div>
-<div class='col-xs-12 col-sm-6 col-lg-3 zoom' id ='charts'>
-  <div> <h3 class="text-center">% Non-White <i class="fas fa-users"></i></h3> </div>
-  <div id="patton" class="medium"></div>
-  <h6 id='pcoe'>PCOE</h6>
-  <div id="ou" class="medium"></div>
-   <h6 id='ou_circle'>Ohio U.</h6>
-</div>
-</div>
+      <div class="col-xs-12 col-sm-6 col-lg-4 zoom" id='mytable'>
+        <div>
+          <h3 class="text-center">Race & Ethnicity <i class="fas fa-globe"></i></h3>
+        </div>
 
-<div>
-  <p style="
+      </div>
+      <div class='col-xs-12 col-sm-6 col-lg-3 zoom' id='charts'>
+        <div>
+          <h3 class="text-center">% Non-White <i class="fas fa-users"></i></h3>
+        </div>
+        <div id="patton" class="medium"></div>
+        <h6 id='pcoe'>PCOE</h6>
+        <div id="ou" class="medium"></div>
+        <h6 id='ou_circle'>Ohio U.</h6>
+      </div>
+    </div>
+
+    <div>
+      <p style="
   font-size: x-small;
   padding: 25px;
-">  Data Source: Ohio University Office of Institutional Research, Fall 2017</p>
-</div></div>
-<script type="text/javascript" src="script.js"></script>
+"> Data Source: Ohio University Office of Institutional
+        Research, Fall 2017</p>
+    </div>
+  </div>
+  <script type="text/javascript" src="script.js"></script>
 
 </body>
+
 </html>

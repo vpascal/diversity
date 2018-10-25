@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,700');
 
 @media screen and (min-width: 1400px) {
@@ -8,16 +7,18 @@
 }
 
 
-@page { size: auto }
+@page {
+  size: auto
+}
 
 body {
   color: black !important;
   font-family: 'Roboto Mono', monospace !important;
-  
+
 }
 
 
-h1{
+h1 {
   padding-bottom: 20px;
   padding-top: 5px;
 }
@@ -30,20 +31,22 @@ h1{
 }
 
 
-.w3-table, th, td {
+.w3-table,
+th,
+td {
 
   font-family: 'Roboto Mono', monospace;
 
 
 }
 
-.header{
+.header {
 
   background-color: rgb(255, 210, 0);
   color: black;
 }
 
-img{
+img {
   width: 75%;
 
 }
@@ -69,14 +72,16 @@ img{
   font-weight: 700;
 }
 
-.tg{
-	color: black;
+.tg {
+  color: black;
 }
+
 .percircle>span {
   color: #b71616 !important;
 }
 
-#patton, #ou{
+#patton,
+#ou {
 
   margin-bottom: 50px;
   margin-top: 25px;
@@ -85,22 +90,22 @@ img{
 }
 
 #pcoe {
-    position: absolute;
-    bottom: 50%;
-    left: 25%;
-    margin-left: 20px;
-    font-family: 'Roboto Mono', monospace;
-    font-weight: 700;
+  position: absolute;
+  bottom: 50%;
+  left: 25%;
+  margin-left: 20px;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 700;
 
 }
 
 #ou_circle {
-    position: absolute;
-    bottom: 5%;
-    left: 25%;
-    margin-left: 20px;
-    font-family: 'Roboto Mono', monospace;
-    font-weight: 700;
+  position: absolute;
+  bottom: 5%;
+  left: 25%;
+  margin-left: 20px;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 700;
 }
 
 .center {
@@ -121,52 +126,52 @@ img{
 
 #faculty {
   font-family: 'Roboto Mono', monospace;
-    background-image: url(professor.svg);
-    background-color: transparent; 
-    background-repeat: no-repeat; 
-    background-position: 0px 0px;  
-    vertical-align: middle;
-    margin: 0 20px 20px 20px;
-    background-size: 30px;
-    border-bottom: 1px solid transparent;
+  background-image: url(professor.svg);
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
+  vertical-align: middle;
+  margin: 0 20px 20px 20px;
+  background-size: 30px;
+  border-bottom: 1px solid transparent;
 }
-  
-  #both {
-    font-family: 'Roboto Mono', monospace;
-      background-image: url(all.svg);
-      background-color: transparent; 
-      background-repeat: no-repeat; 
-      background-position: 0px 0px;  
-      vertical-align: middle;
-      margin: 0 20px 20px 20px;
-      background-size: 30px;
-      border-bottom: 1px solid transparent;
-      
-    }
 
-    #staff {
-      font-family: 'Roboto Mono', monospace;
-        background-image: url(staff.svg);
-        background-color: transparent; 
-        background-repeat: no-repeat; 
-        background-position: 0px 0px;  
-        vertical-align: middle;
-        margin: 0 20px 20px 20px;
-        background-size: 30px;
-        border-bottom: 1px solid transparent;
-      }
+#both {
+  font-family: 'Roboto Mono', monospace;
+  background-image: url(all.svg);
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
+  vertical-align: middle;
+  margin: 0 20px 20px 20px;
+  background-size: 30px;
+  border-bottom: 1px solid transparent;
+
+}
+
+#staff {
+  font-family: 'Roboto Mono', monospace;
+  background-image: url(staff.svg);
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
+  vertical-align: middle;
+  margin: 0 20px 20px 20px;
+  background-size: 30px;
+  border-bottom: 1px solid transparent;
+}
 
 
-      #buttonnav{
-        padding-bottom: 20px;
-      }
+#buttonnav {
+  padding-bottom: 20px;
+}
 
-    
-  .active, .mybutton:focus, .mybutton:hover {
-          border-style: none !important;    
-          outline: none !important;
-          box-shadow: none !important;    
-          border-bottom: 2px solid black !important;
-      }
-    
-    
+
+.active,
+.mybutton:focus,
+.mybutton:hover {
+  border-style: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-bottom: 2px solid black !important;
+}
