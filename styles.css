@@ -8,8 +8,6 @@
 }
 
 
-@page { size: auto }
-
 body {
   color: black !important;
   font-family: 'Roboto Mono', monospace !important;
@@ -162,11 +160,12 @@ img{
       }
 
     
-  .active, .mybutton:focus, .mybutton:hover {
+      .active, .mybutton:focus, .mybutton:hover {
           border-style: none !important;    
           outline: none !important;
           box-shadow: none !important;    
-          border-bottom: 2px solid black !important;
+          border-bottom: 1px solid black !important;
       }
     
     
+     

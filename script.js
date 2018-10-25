@@ -1,5 +1,4 @@
 document.getElementById('faculty').focus();
-document.getElementById('faculty').classList.add('active');
 
 
 function tabulate(data, columns) {
@@ -102,16 +101,7 @@ reader('data/faculty.csv');
 
 var faculty_data = [61.3, 38.7, 48.1, 51.9];
 
-<<<<<<< HEAD
 document.getElementById('faculty').addEventListener('click', function () {
-=======
-document.getElementById('faculty').addEventListener('click', function(){
-  this.classList.add('active');
-
-  document.getElementById('staff').classList.remove('active');
-  document.getElementById('both').classList.remove('active');
-
->>>>>>> 467271e78ea6587ea4ac016a4f314648d5200091
   patton_progress = 18.5;
   ou_progress = 15.3;
 
@@ -139,16 +129,7 @@ document.getElementById('faculty').addEventListener('click', function(){
   }
 })
 
-<<<<<<< HEAD
 document.getElementById('staff').addEventListener('click', function () {
-=======
-document.getElementById('staff').addEventListener('click', function(){
-  this.classList.add('active');
-  document.getElementById('faculty').classList.remove('active');
-  document.getElementById('both').classList.remove('active');
-
-
->>>>>>> 467271e78ea6587ea4ac016a4f314648d5200091
   patton_progress = 14.6;
   ou_progress = 9.5;
 
@@ -181,10 +162,6 @@ document.getElementById('staff').addEventListener('click', function(){
 })
 
 document.getElementById('both').addEventListener('click', function () {
-
-  this.classList.add('active');
-  document.getElementById('faculty').classList.remove('active');
-  document.getElementById('staff').classList.remove('active');
 
   patton_progress = 17.7;
   ou_progress = 11.9;
