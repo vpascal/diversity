@@ -1,7 +1,6 @@
 document.getElementById('faculty').focus();
 document.getElementById('faculty').classList.add('active');
 
-
 function tabulate(data, columns) {
   var table = d3.select('#mytable').append('table')
   table.attr('class', 'w3-table-all w3-border-0')
@@ -57,8 +56,6 @@ function reader(file) {
     tabulate(data, columns)
   })
 }
-
-
 
 
 function updatetable(data) {
