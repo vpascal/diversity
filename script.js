@@ -261,7 +261,7 @@ var tooltip = d3.select("body")
     .text("a simple tooltip");
 
 
-d3.select(".fa-info-circle")
+d3.select("#pulsating")
     .on("mouseover", function() { return tooltip.style("visibility", "visible"); })
     .on("mousemove", function() { return tooltip.style("top", (event.pageY + 15) + "px").style("left", (event.pageX + 10) + "px"); })
     .on("mouseout", function() { return tooltip.style("visibility", "hidden"); });
