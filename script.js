@@ -1,5 +1,7 @@
 document.getElementById('faculty').focus();
 document.getElementById('faculty').classList.add('active');
+let button_value = 'faculty';
+
 
 function tabulate(data, columns) {
     var table = d3.select('#mytable').append('table')
@@ -117,6 +119,7 @@ var faculty_data = [61.3, 38.7, 48.1, 51.9];
 
 document.getElementById('faculty').addEventListener('click', function() {
     this.classList.add('active');
+    button_value = 'faculty';
 
     document.getElementById('staff').classList.remove('active');
     document.getElementById('both').classList.remove('active');
@@ -150,6 +153,7 @@ document.getElementById('faculty').addEventListener('click', function() {
 
 document.getElementById('staff').addEventListener('click', function() {
     this.classList.add('active');
+    button_value = 'staff';
     document.getElementById('faculty').classList.remove('active');
     document.getElementById('both').classList.remove('active');
 
@@ -188,6 +192,7 @@ document.getElementById('staff').addEventListener('click', function() {
 document.getElementById('both').addEventListener('click', function() {
 
     this.classList.add('active');
+    button_value = 'both';
     document.getElementById('faculty').classList.remove('active');
     document.getElementById('staff').classList.remove('active');
 
@@ -258,7 +263,12 @@ var tooltip = d3.select("body")
     .style("position", "absolute")
     .style("z-index", "10")
     .style("visibility", "hidden")
-    .text("a simple tooltip");
+    .text(function() {
+
+        if (button_value == 'faculty') {
+            return "Vlad";
+        } else { return "Test"; }
+    });
 
 
 d3.select("#pulsating")
