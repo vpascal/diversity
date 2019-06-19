@@ -262,16 +262,19 @@ var tooltip = d3.select("body")
     .append("div")
     .style("position", "absolute")
     .style("z-index", "10")
-    .style("visibility", "hidden")
-    .text(function() {
-
-        if (button_value == 'faculty') {
-            return "Vlad";
-        } else { return "Test"; }
-    });
+    .style("visibility", "hidden");
 
 
 d3.select("#pulsating")
     .on("mouseover", function() { return tooltip.style("visibility", "visible"); })
-    .on("mousemove", function() { return tooltip.style("top", (event.pageY + 15) + "px").style("left", (event.pageX + 10) + "px"); })
+    .on("mousemove", function() { 
+        tooltip
+        .html(function() {
+            if (button_value == 'faculty') {
+                return "Vlad";
+            } else { return "Test"; }
+        });
+        return tooltip.style("top", (event.pageY + 15) + "px")
+        .style("left", (event.pageX + 10) + "px");
+     })
     .on("mouseout", function() { return tooltip.style("visibility", "hidden"); });
