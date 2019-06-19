@@ -263,5 +263,5 @@ var tooltip = d3.select("body")
 
 d3.select(".fa-info-circle")
     .on("mouseover", function() { return tooltip.style("visibility", "visible"); })
-    .on("mousemove", function() { return tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px"); })
+    .on("mousemove", function() { return tooltip.style("top", (event.pageY + 15) + "px").style("left", (event.pageX + 10) + "px"); })
     .on("mouseout", function() { return tooltip.style("visibility", "hidden"); });
