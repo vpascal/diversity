@@ -272,7 +272,11 @@ d3.select("#pulsating")
             .html(function() {
                 if (button_value == 'faculty') {
                     return "Up 1.9 percentage <br>points from 2017";
-                } else { return "Test"; }
+                } else if (button_value == 'staff') {
+                    return "Up 4.0 percentage <br>points from 2017";
+                } else {
+                    return "Up 2.3 percentage <br>points from 2017";
+                }
             });
         return tooltip.style("top", (event.pageY + 15) + "px")
             .style("left", (event.pageX + 10) + "px");
