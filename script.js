@@ -267,14 +267,14 @@ var tooltip = d3.select("body")
 
 d3.select("#pulsating")
     .on("mouseover", function() { return tooltip.style("visibility", "visible"); })
-    .on("mousemove", function() { 
+    .on("mousemove", function() {
         tooltip
-        .html(function() {
-            if (button_value == 'faculty') {
-                return "Vlad";
-            } else { return "Test"; }
-        });
+            .html(function() {
+                if (button_value == 'faculty') {
+                    return "Up 1.9 percentage <br>points from 2017";
+                } else { return "Test"; }
+            });
         return tooltip.style("top", (event.pageY + 15) + "px")
-        .style("left", (event.pageX + 10) + "px");
-     })
+            .style("left", (event.pageX + 10) + "px");
+    })
     .on("mouseout", function() { return tooltip.style("visibility", "hidden"); });
