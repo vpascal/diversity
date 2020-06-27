@@ -1,8 +1,24 @@
+// setting the some initial values
 document.getElementById('faculty').focus();
 document.getElementById('faculty').classList.add('active');
 let button_value = 'faculty';
 
+const ids = ['pcoe_female', 'pcoe_male', 'ou_female', 'ou_male'];
+let faculty_data = [61.4, 38.6, 49.6, 50.4];
+let staff = [77.6, 22.4, 56.6, 43.4];
+let both = [65.3, 34.7, 53.8, 46.2];
 
+let patton_progress = 19.0; 
+let ou_progress = 14.6;
+
+const ou_faculty = 14.6,
+    ou_staff = 9.1,
+    ou_both = 11.3,
+    pcoe_faculty = 19.0,
+    pcoe_staff = 14.3,
+    pcoe_both = 17.8;
+
+// table function
 function tabulate(data, columns) {
     var table = d3.select('#mytable').append('table')
     table.attr('class', 'w3-table-all w3-border-0')
@@ -106,17 +122,9 @@ function reader_new(file) {
     });
 }
 
-
-var ids = ['pcoe_female', 'pcoe_male', 'ou_female', 'ou_male'];
-
-var patton_progress = 18.5;
-var ou_progress = 15.3;
-
-
 reader('data/faculty.csv');
 
-var faculty_data = [61.3, 38.7, 48.1, 51.9];
-
+// this is what happens when 'Faculty' button is clicked
 document.getElementById('faculty').addEventListener('click', function() {
     this.classList.add('active');
     button_value = 'faculty';
@@ -124,8 +132,8 @@ document.getElementById('faculty').addEventListener('click', function() {
     document.getElementById('staff').classList.remove('active');
     document.getElementById('both').classList.remove('active');
 
-    patton_progress = 18.5;
-    ou_progress = 15.3;
+    patton_progress = pcoe_faculty;
+    ou_progress = ou_faculty;
 
     $(function() {
         $("#patton").percircle({
@@ -140,8 +148,6 @@ document.getElementById('faculty').addEventListener('click', function() {
             percent: ou_progress
         });
     });
-
-
 
     reader_new('data/faculty.csv');
     var i;
@@ -151,6 +157,7 @@ document.getElementById('faculty').addEventListener('click', function() {
     }
 })
 
+// this is what happens when 'staff' button is clicked
 document.getElementById('staff').addEventListener('click', function() {
     this.classList.add('active');
     button_value = 'staff';
@@ -158,8 +165,8 @@ document.getElementById('staff').addEventListener('click', function() {
     document.getElementById('both').classList.remove('active');
 
 
-    patton_progress = 14.6;
-    ou_progress = 9.5;
+    patton_progress = pcoe_staff;
+    ou_progress = ou_staff;
 
     $(function() {
         $("#patton").percircle({
@@ -175,11 +182,8 @@ document.getElementById('staff').addEventListener('click', function() {
         });
     });
 
-
-
     reader_new('data/staff.csv');
 
-    var staff = [78.0, 22.0, 56.2, 43.8];
     var i;
     for (i = 0; i < ids.length; i++) {
         var countstaff = new CountUp(ids[i], 0, staff[i], 1);
@@ -189,6 +193,7 @@ document.getElementById('staff').addEventListener('click', function() {
 
 })
 
+// this is what happens when 'Both' button is clicked
 document.getElementById('both').addEventListener('click', function() {
 
     this.classList.add('active');
@@ -196,8 +201,8 @@ document.getElementById('both').addEventListener('click', function() {
     document.getElementById('faculty').classList.remove('active');
     document.getElementById('staff').classList.remove('active');
 
-    patton_progress = 17.7;
-    ou_progress = 11.9;
+    patton_progress = pcoe_both;
+    ou_progress = ou_both;
 
     $(function() {
         $("#patton").percircle({
@@ -206,7 +211,6 @@ document.getElementById('both').addEventListener('click', function() {
         });
     });
 
-
     $(function() {
         $("#ou").percircle({
             percent: ou_progress
@@ -214,10 +218,8 @@ document.getElementById('both').addEventListener('click', function() {
     });
 
 
-
     reader_new('data/both.csv');
 
-    var both = [64.6, 35.4, 52.9, 47.1];
     var i;
     for (i = 0; i < ids.length; i++) {
         var counter = new CountUp(ids[i], 0, both[i], 1);
@@ -271,11 +273,11 @@ d3.select("#pulsating")
         tooltip
             .html(function() {
                 if (button_value == 'faculty') {
-                    return "Up 1.9 percentage <br>points from 2017";
+                    return "Down 1.4 percentage <br>points from 2018";
                 } else if (button_value == 'staff') {
-                    return "Up 4.0 percentage <br>points from 2017";
+                    return "Down 4.3 percentage <br>points from 2018";
                 } else {
-                    return "Up 2.3 percentage <br>points from 2017";
+                    return "Down 2.0 percentage <br>points from 2018";
                 }
             });
         return tooltip.style("top", (event.pageY + 15) + "px")
