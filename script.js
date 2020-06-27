@@ -4,19 +4,19 @@ document.getElementById('faculty').classList.add('active');
 let button_value = 'faculty';
 
 const ids = ['pcoe_female', 'pcoe_male', 'ou_female', 'ou_male'];
-let faculty_data = [61.3, 38.7, 48.1, 51.9];
-let staff = [78.0, 22.0, 56.2, 43.8];
-let both = [64.6, 35.4, 52.9, 47.1];
+let faculty_data = [61.4, 38.6, 49.6, 50.4];
+let staff = [77.6, 22.4, 56.6, 43.4];
+let both = [65.3, 34.7, 53.8, 46.2];
 
-let patton_progress = 20.4; 
-let ou_progress = 17.4;
+let patton_progress = 19.0; 
+let ou_progress = 14.6;
 
-const ou_faculty = 17.4,
-    ou_staff = 10.3,
-    ou_both = 13.0,
-    pcoe_faculty = 20.4,
-    pcoe_staff = 18.6,
-    pcoe_both = 20.0;
+const ou_faculty = 14.6,
+    ou_staff = 9.1,
+    ou_both = 11.3,
+    pcoe_faculty = 19.0,
+    pcoe_staff = 14.3,
+    pcoe_both = 17.8;
 
 // table function
 function tabulate(data, columns) {
@@ -273,11 +273,11 @@ d3.select("#pulsating")
         tooltip
             .html(function() {
                 if (button_value == 'faculty') {
-                    return "Up 1.9 percentage <br>points from 2017";
+                    return "Down 1.4 percentage <br>points from 2018";
                 } else if (button_value == 'staff') {
-                    return "Up 4.0 percentage <br>points from 2017";
+                    return "Down 4.3 percentage <br>points from 2018";
                 } else {
-                    return "Up 2.3 percentage <br>points from 2017";
+                    return "Down 2.0 percentage <br>points from 2018";
                 }
             });
         return tooltip.style("top", (event.pageY + 15) + "px")
