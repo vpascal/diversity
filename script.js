@@ -63,19 +63,6 @@ function tabulate(data, columns) {
     return table;
 }
 
-function reader(file) {
-    d3.csv(file, function(data) {
-        data.forEach(function(d) {
-            d[''] = d[''];
-            d["Patton College"] = +d["Patton College"];
-            d["Ohio Univesity"] = +d["Ohio Univesity"];
-        });
-        var columns = ['', 'Patton College', 'Ohio Univesity']
-        tabulate(data, columns)
-    })
-}
-
-
 function updatetable(data) {
 
     var columns = ['race', 'pcoe', 'ou']
@@ -108,6 +95,18 @@ function updatetable(data) {
         })
 
     return rows
+}
+
+function reader(file) {
+    d3.csv(file, function(data) {
+        data.forEach(function(d) {
+            d[''] = d[''];
+            d["Patton College"] = +d["Patton College"];
+            d["Ohio Univesity"] = +d["Ohio Univesity"];
+        });
+        var columns = ['', 'Patton College', 'Ohio Univesity']
+        tabulate(data, columns)
+    })
 }
 
 function reader_new(file) {
