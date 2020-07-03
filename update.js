@@ -24,17 +24,16 @@ var svg = d3.select("#linechart")
               "translate(" + margin.left + "," + margin.top + ")");
 
 function linechart(type){
-
   d3.csv("data/linechart.csv", function(error,data) {
   data = data.filter(function(d){return d.type == type;})
     data.forEach(function(d) {
-		d.year =parseDate(d.year);
+		d.year = parseDate(d.year);
     d.value = +d.value;
     });
 
    // Scale the range of the data
    x.domain(d3.extent(data, function(d) { return d.year; }));
-   y.domain([0, d3.max(data, function(d) { return d.value; })]);
+   y.domain([0, 25]);
 
    // Nest the entries by symbol
    var dataNest = d3.nest()
@@ -42,7 +41,7 @@ function linechart(type){
        .entries(data);
 
    // set the colour scale
-   var color = d3.scaleOrdinal(d3.schemeCategory10);
+   var color = d3.scaleOrdinal(d3.schemeCategory10).range(['#e41a1c','#377eb8']);
 
    legendSpace = width/dataNest.length; // spacing for the legend
 
@@ -51,7 +50,9 @@ function linechart(type){
 
        svg.append("path")
            .attr("class", "line")
-           .style("stroke", function() { // Add the colours dynamically
+           .attr("fill","none")
+           .attr("stroke-width", 2)
+           .style("stroke", function() { 
                return d.color = color(d.key); })
            .attr("d", priceline(d.values));
 
@@ -59,8 +60,8 @@ function linechart(type){
        svg.append("text")
            .attr("x", (legendSpace/2)+i*legendSpace)  // space legend
            .attr("y", height + (margin.bottom/2)+ 5)
-           .attr("class", "legend")    // style the legend
-           .style("fill", function() { // Add the colours dynamically
+           .attr("class", "legend")   
+           .style("fill", function() { 
                return d.color = color(d.key); })
            .text(d.key); 
 
@@ -76,6 +77,17 @@ function linechart(type){
  svg.append("g")
      .attr("class", "axis")
      .call(d3.axisLeft(y));
+
+  // adding points   
+  svg.selectAll(".dot")
+  .data(data)
+  .enter().append("circle") 
+    .attr("class","dot")
+    .attr("cx",function(d) { return x(d.year) })
+    .attr("cy",function(d) { return y(d.value) })
+    .attr("r",4)
+    .style("fill", function(d) { 
+      return color(d.category); });
 
 });
 
