@@ -6,8 +6,8 @@ var margin = {top: 30, right: 20, bottom: 70, left: 50},
 var parseDate = d3.timeParse("%Y");
 
 // Set the ranges
-var x = d3.scaleTime().range([0, width]);  
-var y = d3.scaleLinear().range([height, 0]);
+var x = d3.scaleTime().rangeRound([0, width]);  
+var y = d3.scaleLinear().rangeRound([height, 0]);
 
 // Define the line
 var priceline = d3.line()	
@@ -31,10 +31,17 @@ function linechart(type){
     d.value = +d.value;
     });
 
-   // Scale the range of the data
-   x.domain(d3.extent(data, function(d) { return d.year; }));
-   y.domain([0, 25]);
-
+// creating domains and adding some padding so it looks better
+  var minDate = d3.min(data, function(d) { return d.year.getTime(); }),
+  maxDate = d3.max(data, function(d) { return d.year.getTime(); }),
+  padding = (maxDate - minDate) * .05;
+  
+  var yExtent = d3.extent(data, function(d) { return d.value; }),
+  yRange = yExtent[1] - yExtent[0];
+  
+  x.domain([minDate - padding, maxDate + padding]);
+  y.domain([0, 25]);
+ 
    // Nest the entries by symbol
    var dataNest = d3.nest()
        .key(function(d) {return d.category;})
