@@ -1,27 +1,3 @@
-var margin = {top: 30, right: 20, bottom: 70, left: 50},
-    width = 600 - margin.left - margin.right,
-    height = 300 - margin.top - margin.bottom;
-
-// Parse the date / time
-var parseDate = d3.timeParse("%Y");
-
-// Set the ranges
-var x = d3.scaleTime().rangeRound([0, width]);  
-var y = d3.scaleLinear().rangeRound([height, 0]);
-
-// Define the line
-var priceline = d3.line()	
-    .x(function(d) { return x(d.year); })
-    .y(function(d) { return y(d.value); });
-    
-// Adds the svg canvas
-var svg = d3.select("#linechart")
-    .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-        .attr("transform", 
-              "translate(" + margin.left + "," + margin.top + ")");
 
 function linechart(type){
   d3.csv("data/linechart.csv", function(error,data) {
@@ -95,6 +71,14 @@ function linechart(type){
     .attr("r",4)
     .style("fill", function(d) { 
       return color(d.category); });
+
+  svg.append("g").selectAll("text")
+      .data(data)
+      .enter()
+      .append("text")
+      .attr("x", function(d) { return x(d.year) - 5 })
+      .attr("y", function(d) { return y(d.value)-7 })
+      .text(function(d) { return d.value });
 
 });
 

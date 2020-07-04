@@ -161,3 +161,8 @@ img {
     position: absolute;
     right: 0px;
 }
+
+.linechart, .axis{
+    font-family: 'Roboto Mono', monospace;
+    font-size: 13px;
+}
