@@ -155,7 +155,7 @@ function linechart(type) {
             })
             .entries(data);
 
-        // Nest the entries by symbol
+        // Nest the entries by category
         var dataNest = d3.nest()
             .key(function (d) {
                 return d.category;
@@ -201,11 +201,8 @@ function linechart(type) {
 
         //adding points 
 
-        svg.append('g');
         var points = svg.selectAll('circle')
             .data(data)
-
-        points.exit().remove();
 
         var points_viz = points.enter()
             .append('circle')
@@ -225,8 +222,10 @@ function linechart(type) {
                 return color(d.category);
             });
 
+
+        points.exit().remove();
+
         // adding value labels    
-        svg.append("g")
 
         texts = svg.selectAll("text")
             .data(data)
@@ -248,7 +247,11 @@ function linechart(type) {
             .text(function (d) {
                 return d.value
             });
+
+
     });
+
+
 
 
 }
@@ -271,6 +274,7 @@ var parseDate = d3.timeParse("%Y");
 var x = d3.scaleTime().rangeRound([0, width]);
 var y = d3.scaleLinear().rangeRound([height, 0]);
 
+
 // Adds the svg canvas
 var svg = d3.select("#linechart")
     .append("svg")
@@ -279,6 +283,7 @@ var svg = d3.select("#linechart")
     .append("g")
     .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
+
 
 // let's start loading stuff
 
