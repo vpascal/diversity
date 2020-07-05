@@ -1,5 +1,4 @@
-
-// setting the some initial values
+// setting the some data initial values
 document.getElementById('faculty').focus();
 document.getElementById('faculty').classList.add('active');
 let button_value = 'faculty';
@@ -9,7 +8,7 @@ let faculty_data = [61.4, 38.6, 49.6, 50.4];
 let staff = [77.6, 22.4, 56.6, 43.4];
 let both = [65.3, 34.7, 53.8, 46.2];
 
-let patton_progress = 19.0; 
+let patton_progress = 19.0;
 let ou_progress = 14.6;
 
 const ou_faculty = 14.6,
@@ -31,7 +30,7 @@ function tabulate(data, columns) {
         .data(columns)
         .enter()
         .append('th')
-        .text(function(d) {
+        .text(function (d) {
             return d
         })
         .attr('class', 'header')
@@ -42,8 +41,8 @@ function tabulate(data, columns) {
         .append('tr')
 
     var cells = rows.selectAll('td')
-        .data(function(row) {
-            return columns.map(function(column) {
+        .data(function (row) {
+            return columns.map(function (column) {
                 return {
                     column: column,
                     value: row[column]
@@ -52,7 +51,7 @@ function tabulate(data, columns) {
         })
         .enter()
         .append('td')
-        .text(function(d) {
+        .text(function (d) {
             if (typeof d.value == 'number') {
                 var temp = new CountUp(this, 0, d.value, 1);
                 temp.start()
@@ -76,8 +75,8 @@ function updatetable(data) {
         .append('tr')
 
     var cells = rows.selectAll('td')
-        .data(function(row) {
-            return columns.map(function(column) {
+        .data(function (row) {
+            return columns.map(function (column) {
                 return {
                     column: column,
                     value: row[column]
@@ -86,7 +85,7 @@ function updatetable(data) {
         })
         .enter()
         .append('td')
-        .text(function(d) {
+        .text(function (d) {
             if (typeof d.value == 'number') {
                 var temp = new CountUp(this, 0, d.value, 1);
                 temp.start()
@@ -99,8 +98,8 @@ function updatetable(data) {
 }
 
 function reader(file) {
-    d3.csv(file, function(data) {
-        data.forEach(function(d) {
+    d3.csv(file, function (data) {
+        data.forEach(function (d) {
             d[''] = d[''];
             d["Patton College"] = +d["Patton College"];
             d["Ohio Univesity"] = +d["Ohio Univesity"];
@@ -111,108 +110,157 @@ function reader(file) {
 }
 
 function reader_new(file) {
-    d3.csv(file, function(d) {
+    d3.csv(file, function (d) {
         return {
             race: d[''],
             pcoe: +d['Patton College'],
             ou: +d['Ohio Univesity']
         };
-    }, function(data) {
+    }, function (data) {
         updatetable(data);
     });
 }
 
-function linechart(type){
-    d3.csv("data/linechart.csv", function(error,data) {
-    data = data.filter(function(d){return d.type == type;})
-      data.forEach(function(d) {
-          d.year = parseDate(d.year);
-      d.value = +d.value;
-      });
-  
-  // creating domains and adding some padding so it looks better
-    var minDate = d3.min(data, function(d) { return d.year.getTime(); }),
-    maxDate = d3.max(data, function(d) { return d.year.getTime(); }),
-    padding = (maxDate - minDate) * .05;
-    
-    var yExtent = d3.extent(data, function(d) { return d.value; }),
-    yRange = yExtent[1] - yExtent[0];
-    
-    x.domain([minDate - padding, maxDate + padding]);
-    y.domain([0, 25]);
-   
-     // Nest the entries by symbol
-     var dataNest = d3.nest()
-         .key(function(d) {return d.category;})
-         .entries(data);
-  
-     // set the colour scale
-     var color = d3.scaleOrdinal(d3.schemeCategory10).range(['#e41a1c','#377eb8']);
-  
-     legendSpace = width/dataNest.length; // spacing for the legend
-  
-     // Loop through each symbol / key
-     dataNest.forEach(function(d,i) { 
-  
-         svg.append("path")
-             .attr("class", "line")
-             .attr("fill","none")
-             .attr("stroke-width", 2)
-             .style("stroke", function() { 
-                 return d.color = color(d.key); })
-             .attr("d", priceline(d.values));
+function linechart(type) {
+    d3.csv("data/linechart.csv", function (error, data) {
+        data = data.filter(function (d) {
+            return d.type == type;
+        })
+        data.forEach(function (d) {
+            d.year = parseDate(d.year);
+            d.value = +d.value;
+        });
 
-         // Add the Legend
-         svg.append("text")
-             .attr("x", (legendSpace/2)+i*legendSpace)  // space legend
-             .attr("y", height + (margin.bottom/2)+ 5)
-             .attr("class", "legend")   
-             .style("fill", function() { 
-                 return d.color = color(d.key); })
-             .text(d.key); 
-  
-     });
-  
-   // Add the X Axis
-   svg.append("g")
-       .attr("class", "axis")
-       .attr("transform", "translate(0," + height + ")")
-       .call(d3.axisBottom(x));
-  
-   // Add the Y Axis
-   svg.append("g")
-       .attr("class", "axis")
-       .call(d3.axisLeft(y));
-  
-    // adding points   
-    svg.selectAll(".dot")
-    .data(data)
-    .enter().append("circle") 
-      .attr("class","dot")
-      .transition().duration(550)
-      .attr("cx",function(d) { return x(d.year) })
-      .attr("cy",function(d) { return y(d.value) })
-      .attr("r",4)
-      .style("fill", function(d) { 
-        return color(d.category); });
-  
-    svg.append("g").selectAll("text")
-        .data(data)
-        .enter()
-        .append("text")
-        .transition().duration(550)
-        .attr("x", function(d) { return x(d.year) - 5 })
-        .attr("y", function(d) { return y(d.value)-7 })
-        .text(function(d) { return d.value });
-  
-  });
-  
-  
-  }
+        // creating domains and adding some padding so it looks better
+        var minDate = d3.min(data, function (d) {
+                return d.year.getTime();
+            }),
+            maxDate = d3.max(data, function (d) {
+                return d.year.getTime();
+            }),
+            padding = (maxDate - minDate) * .05;
+
+        var yExtent = d3.extent(data, function (d) {
+                return d.value;
+            }),
+            yRange = yExtent[1] - yExtent[0];
+
+        x.domain([minDate - padding, maxDate + padding]);
+        y.domain([0, 25]);
+
+        // Nest the entries by category
+        var dataNest = d3.nest()
+            .key(function (d) {
+                return d.category;
+            })
+            .entries(data);
+
+        // Nest the entries by symbol
+        var dataNest = d3.nest()
+            .key(function (d) {
+                return d.category;
+            })
+            .entries(data);
+
+
+        // set the colour scale
+        var color = d3.scaleOrdinal(d3.schemeCategory10).range(['#e41a1c', '#377eb8']);
+
+        legendSpace = width / dataNest.length; // spacing for the legend
+
+        // adding lines
+
+        var lines = svg.selectAll('.line')
+            .data(dataNest)
+
+        lines.exit().remove()
+
+        var viz = lines.enter()
+            .append("path")
+            .merge(lines)
+
+        viz
+            .transition().duration(550)
+            .attr("class", "line")
+            .attr("fill", "none")
+            .attr("stroke-width", 2)
+            .style("stroke", function (d) {
+                return color(d.key);
+            })
+            .attr("d", function (d) {
+                return d3.line()
+                    .x(function (d) {
+                        return x(d.year);
+                    })
+                    .y(function (d) {
+                        return y(+d.value);
+                    })
+                    .curve(d3.curveMonotoneX)
+                    (d.values)
+            });
+
+        //adding points 
+
+        svg.append('g');
+        var points = svg.selectAll('circle')
+            .data(data)
+
+        points.exit().remove();
+
+        var points_viz = points.enter()
+            .append('circle')
+            .merge(points)
+
+        points_viz
+            .transition().duration(550)
+            .attr("class", "dot")
+            .attr("cx", function (d) {
+                return x(d.year)
+            })
+            .attr("cy", function (d) {
+                return y(d.value)
+            })
+            .attr("r", 4)
+            .style("fill", function (d) {
+                return color(d.category);
+            });
+
+        // adding value labels    
+        svg.append("g")
+
+        texts = svg.selectAll("text")
+            .data(data)
+
+        texts.exit().remove();
+
+        var text_viz = texts.enter()
+            .append("text")
+            .merge(texts)
+
+        text_viz
+            .transition().duration(550)
+            .attr("x", function (d) {
+                return x(d.year) - 5
+            })
+            .attr("y", function (d) {
+                return y(d.value) - 7
+            })
+            .text(function (d) {
+                return d.value
+            });
+    });
+
+
+}
 
 //paremeters for line charts
 
-var margin = {top: 30, right: 20, bottom: 70, left: 50},
+var margin = {
+        top: 30,
+        right: 20,
+        bottom: 70,
+        left: 50
+    },
     width = 950 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
 
@@ -220,23 +268,17 @@ var margin = {top: 30, right: 20, bottom: 70, left: 50},
 var parseDate = d3.timeParse("%Y");
 
 // Set the ranges
-var x = d3.scaleTime().rangeRound([0, width]);  
+var x = d3.scaleTime().rangeRound([0, width]);
 var y = d3.scaleLinear().rangeRound([height, 0]);
 
-// Define the line
-var priceline = d3.line()	
-    .x(function(d) { return x(d.year); })
-    .y(function(d) { return y(d.value); })
-    .curve(d3.curveMonotoneX);
-    
 // Adds the svg canvas
 var svg = d3.select("#linechart")
     .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
     .append("g")
-        .attr("transform", 
-              "translate(" + margin.left + "," + margin.top + ")");
+    .attr("transform",
+        "translate(" + margin.left + "," + margin.top + ")");
 
 // let's start loading stuff
 
@@ -244,7 +286,7 @@ reader('data/faculty.csv');
 linechart('faculty');
 
 // this is what happens when 'Faculty' button is clicked
-document.getElementById('faculty').addEventListener('click', function() {
+document.getElementById('faculty').addEventListener('click', function () {
     this.classList.add('active');
     button_value = 'faculty';
 
@@ -254,7 +296,7 @@ document.getElementById('faculty').addEventListener('click', function() {
     patton_progress = pcoe_faculty;
     ou_progress = ou_faculty;
 
-    $(function() {
+    $(function () {
         $("#patton").percircle({
             progressBarColor: "#CC3366",
             percent: patton_progress
@@ -262,7 +304,7 @@ document.getElementById('faculty').addEventListener('click', function() {
     });
 
 
-    $(function() {
+    $(function () {
         $("#ou").percircle({
             percent: ou_progress
         });
@@ -279,7 +321,7 @@ document.getElementById('faculty').addEventListener('click', function() {
 })
 
 // this is what happens when 'staff' button is clicked
-document.getElementById('staff').addEventListener('click', function() {
+document.getElementById('staff').addEventListener('click', function () {
     this.classList.add('active');
     button_value = 'staff';
     document.getElementById('faculty').classList.remove('active');
@@ -289,7 +331,7 @@ document.getElementById('staff').addEventListener('click', function() {
     patton_progress = pcoe_staff;
     ou_progress = ou_staff;
 
-    $(function() {
+    $(function () {
         $("#patton").percircle({
             progressBarColor: "#CC3366",
             percent: patton_progress
@@ -297,7 +339,7 @@ document.getElementById('staff').addEventListener('click', function() {
     });
 
 
-    $(function() {
+    $(function () {
         $("#ou").percircle({
             percent: ou_progress
         });
@@ -316,7 +358,7 @@ document.getElementById('staff').addEventListener('click', function() {
 })
 
 // this is what happens when 'Both' button is clicked
-document.getElementById('both').addEventListener('click', function() {
+document.getElementById('both').addEventListener('click', function () {
 
     this.classList.add('active');
     button_value = 'both';
@@ -326,14 +368,14 @@ document.getElementById('both').addEventListener('click', function() {
     patton_progress = pcoe_both;
     ou_progress = ou_both;
 
-    $(function() {
+    $(function () {
         $("#patton").percircle({
             progressBarColor: "#CC3366",
             percent: patton_progress
         });
     });
 
-    $(function() {
+    $(function () {
         $("#ou").percircle({
             percent: ou_progress
         });
@@ -368,7 +410,7 @@ if (!demo.error) {
     console.error(demo3.error);
 }
 
-$(function() {
+$(function () {
     $("#patton").percircle({
         progressBarColor: "#CC3366",
         percent: patton_progress
@@ -376,7 +418,7 @@ $(function() {
 });
 
 
-$(function() {
+$(function () {
     $("#ou").percircle({
         percent: ou_progress
     });
@@ -391,10 +433,12 @@ var tooltip = d3.select("body")
 
 
 d3.select("#pulsating")
-    .on("mouseover", function() { return tooltip.style("visibility", "visible"); })
-    .on("mousemove", function() {
+    .on("mouseover", function () {
+        return tooltip.style("visibility", "visible");
+    })
+    .on("mousemove", function () {
         tooltip
-            .html(function() {
+            .html(function () {
                 if (button_value == 'faculty') {
                     return "Down 1.4 percentage <br>points from 2018";
                 } else if (button_value == 'staff') {
@@ -406,4 +450,6 @@ d3.select("#pulsating")
         return tooltip.style("top", (event.pageY + 15) + "px")
             .style("left", (event.pageX + 10) + "px");
     })
-    .on("mouseout", function() { return tooltip.style("visibility", "hidden"); });
+    .on("mouseout", function () {
+        return tooltip.style("visibility", "hidden");
+    });
