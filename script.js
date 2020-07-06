@@ -148,6 +148,7 @@ function linechart(type) {
         x.domain([minDate - padding, maxDate + padding]);
         y.domain([0, 25]);
 
+          
         // Nest the entries by category
         var dataNest = d3.nest()
             .key(function (d) {
@@ -248,9 +249,17 @@ function linechart(type) {
                 return d.value
             });
 
+            axis = svg.append("g");
+            axis
+            .attr("class", "axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x));
+            
+            svg.append("g")
+            .attr("class", "axis")
+            .call(d3.axisLeft(y));     
 
     });
-
 
 
 
@@ -283,7 +292,8 @@ var svg = d3.select("#linechart")
     .append("g")
     .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
-
+  
+ 
 
 // let's start loading stuff
 
