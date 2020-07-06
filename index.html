@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="dist/js/percircle.js"></script>
     <script type="text/javascript" src="countUp.js"></script>
@@ -25,10 +26,19 @@
 <body>
 
     <div class='container-fluid'>
-
-        <h1 class="text-center">Diversity: Faculty and Staff </h1>
-        <img src="tree.png" class="center" style="width:5%;">
-
+        <header class="w3-display-container w3-content" style="max-width:1500px;" id="home">
+            
+            <div class='w3-wide w3-center'>
+                <h1 class="text-center">Diversity: Faculty and Staff </h1>         
+                <img src="tree.png" class="center" style="width:5%;">
+            </div>
+            <div id = 'commitment' class='w3-center w3-large'>
+<p>
+    The Patton College community fosters a sense of respect and inclusion. Through educational experiences and the climate in our college, we promote increased awareness, acceptance, knowledge, and understanding of all facets of human diversity. We are committed to the recruitment, retention, and success of students, staff, and faculty who are representative of our increasingly diverse global community. Our goal is to prepare leader-educators, practitioners, and human service professionals to serve society responsibly as change agents in meeting diverse human and social needs.
+</p>
+            </div>
+          </header>
+          
 
         <div clas='row'>
             <div class='w3-center buttons' id='buttonnav'>
@@ -84,9 +94,8 @@
                 <h6 id='ou_circle'>OHIO</h6>
             </div>
         </div>
-        <div id ='linechart' class='w3-center'>
-
-        </div>
+        <div id ='linechart' class='w3-center'>  
+</div>
 
         <div>
             <p style=" font-size: x-small; padding: 25px; "> Data Source: Ohio University Office of Institutional Research, Fall 2019</p>
