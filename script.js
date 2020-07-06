@@ -299,8 +299,11 @@ var y = d3.scaleLinear().rangeRound([height, 0]);
 // Adds the svg canvas
 var svg = d3.select("#linechart")
     .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    //.attr("width", width + margin.left + margin.right)
+    //.attr("height", height + margin.top + margin.bottom)
+    .attr("width", "85%")
+    .attr("height", "85%")
+    .attr("viewBox", "0 0 1000 550")
     .append("g")
     .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
