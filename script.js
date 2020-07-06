@@ -4,10 +4,13 @@ document.getElementById('faculty').classList.add('active');
 let button_value = 'faculty';
 
 const ids = ['pcoe_female', 'pcoe_male', 'ou_female', 'ou_male'];
+
+// below is data for gender table
 let faculty_data = [61.4, 38.6, 49.6, 50.4];
 let staff = [77.6, 22.4, 56.6, 43.4];
 let both = [65.3, 34.7, 53.8, 46.2];
 
+//values for the donut chart
 let patton_progress = 19.0;
 let ou_progress = 14.6;
 
@@ -17,6 +20,8 @@ const ou_faculty = 14.6,
     pcoe_faculty = 19.0,
     pcoe_staff = 14.3,
     pcoe_both = 17.8;
+
+const colors =  ['#e41a1c', '#377eb8']    
 
 // table function
 function tabulate(data, columns) {
@@ -128,7 +133,7 @@ function linechart(type) {
         })
         data.forEach(function (d) {
             d.year = parseDate(d.year);
-            d.value = +d.value;
+            d.value = (+d.value).toFixed(1);
         });
 
         // creating domains and adding some padding so it looks better
@@ -165,7 +170,7 @@ function linechart(type) {
 
 
         // set the colour scale
-        var color = d3.scaleOrdinal(d3.schemeCategory10).range(['#e41a1c', '#377eb8']);
+        var color = d3.scaleOrdinal(d3.schemeCategory10).range(colors);
 
         legendSpace = width / dataNest.length; // spacing for the legend
 
@@ -253,14 +258,21 @@ function linechart(type) {
             axis
             .attr("class", "axis")
             .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(x));
+            .call(d3.axisBottom(x).ticks(d3.timeYear));
             
             svg.append("g")
             .attr("class", "axis")
-            .call(d3.axisLeft(y));     
+            .call(d3.axisLeft(y).ticks(5).tickFormat(d => d + "%"));     
+
+            //Adding legend manually
+            svg.append("circle").attr("cx",legendSpace-25).attr("cy",230).attr("r", 6).style("fill", colors[1])
+            svg.append("circle").attr("cx",legendSpace-25).attr("cy",260).attr("r", 6).style("fill", colors[0])
+            svg.append("text").attr("x", legendSpace-5).attr("y", 230).text("PCOE").style("font-size", "15px").attr("alignment-baseline","middle")
+            svg.append("text").attr("x", legendSpace-5).attr("y", 260).text("OHIO").style("font-size", "15px").attr("alignment-baseline","middle")
+
+ 
 
     });
-
 
 
 }
@@ -314,14 +326,14 @@ document.getElementById('faculty').addEventListener('click', function () {
     $(function () {
         $("#patton").percircle({
             progressBarColor: "#CC3366",
-            percent: patton_progress
+            percent: patton_progress.toFixed(1)
         });
     });
 
 
     $(function () {
         $("#ou").percircle({
-            percent: ou_progress
+            percent: ou_progress.toFixed(1)
         });
     });
 
@@ -349,14 +361,14 @@ document.getElementById('staff').addEventListener('click', function () {
     $(function () {
         $("#patton").percircle({
             progressBarColor: "#CC3366",
-            percent: patton_progress
+            percent: patton_progress.toFixed(1)
         });
     });
 
 
     $(function () {
         $("#ou").percircle({
-            percent: ou_progress
+            percent: ou_progress.toFixed(1)
         });
     });
 
@@ -386,13 +398,13 @@ document.getElementById('both').addEventListener('click', function () {
     $(function () {
         $("#patton").percircle({
             progressBarColor: "#CC3366",
-            percent: patton_progress
+            percent: patton_progress.toFixed(1)
         });
     });
 
     $(function () {
         $("#ou").percircle({
-            percent: ou_progress
+            percent: ou_progress.toFixed(1)
         });
     });
 
@@ -428,14 +440,14 @@ if (!demo.error) {
 $(function () {
     $("#patton").percircle({
         progressBarColor: "#CC3366",
-        percent: patton_progress
+        percent: patton_progress.toFixed(1)
     });
 });
 
 
 $(function () {
     $("#ou").percircle({
-        percent: ou_progress
+        percent: ou_progress.toFixed(1)
     });
 });
 
