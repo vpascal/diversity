@@ -262,7 +262,16 @@ function linechart(type) {
             
             svg.append("g")
             .attr("class", "axis")
-            .call(d3.axisLeft(y).ticks(5).tickFormat(d => d + "%"));     
+            .call(d3.axisLeft(y).ticks(5).tickFormat(d => d + "%"));  
+            
+          
+            svg.append("text")
+            .attr('class','title')
+            .attr("x", (width / 10 )  )        
+            .attr("y", 0 - (margin.top / 6))
+            .attr("text-anchor", "center")  
+            .style("font-size", "20px") 
+            .text('Percent Non-White: '+ button_value.charAt(0).toUpperCase() + button_value.slice(1));
 
             //Adding legend manually
             svg.append("circle").attr("cx",legendSpace-25).attr("cy",230).attr("r", 6).style("fill", colors[1])
@@ -270,7 +279,6 @@ function linechart(type) {
             svg.append("text").attr("x", legendSpace-5).attr("y", 230).text("PCOE").style("font-size", "15px").attr("alignment-baseline","middle")
             svg.append("text").attr("x", legendSpace-5).attr("y", 260).text("OHIO").style("font-size", "15px").attr("alignment-baseline","middle")
 
- 
 
     });
 
