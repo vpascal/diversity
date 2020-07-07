@@ -267,7 +267,7 @@ function linechart(type) {
           
             svg.append("text")
             .attr('class','title')
-            .attr("x", (width / 10 )  )        
+            .attr("x", 20 )        
             .attr("y", 0 - (margin.top / 6))
             .attr("text-anchor", "center")  
             .style("font-size", "20px") 
