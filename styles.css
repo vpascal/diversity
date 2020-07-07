@@ -40,6 +40,15 @@ img {
     width: 75%;
 }
 
+
+@media (max-width: 768px) {
+    .responsive {
+        width: 100%;
+        min-width: 20%;
+        height: auto;
+      }
+    }
+
 .name {
     font-size: x-large;
     font-weight: 700;
