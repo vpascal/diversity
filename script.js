@@ -21,7 +21,7 @@ const ou_faculty = 14.6,
     pcoe_staff = 14.3,
     pcoe_both = 17.8;
 
-const colors =  ['#e41a1c', '#377eb8']    
+const colors = ['#e41a1c', '#377eb8']
 
 // table function
 function tabulate(data, columns) {
@@ -138,22 +138,22 @@ function linechart(type) {
 
         // creating domains and adding some padding so it looks better
         var minDate = d3.min(data, function (d) {
-                return d.year.getTime();
-            }),
+            return d.year.getTime();
+        }),
             maxDate = d3.max(data, function (d) {
                 return d.year.getTime();
             }),
             padding = (maxDate - minDate) * .05;
 
         var yExtent = d3.extent(data, function (d) {
-                return d.value;
-            }),
+            return d.value;
+        }),
             yRange = yExtent[1] - yExtent[0];
 
         x.domain([minDate - padding, maxDate + padding]);
         y.domain([0, 25]);
 
-          
+
         // Nest the entries by category
         var dataNest = d3.nest()
             .key(function (d) {
@@ -254,30 +254,30 @@ function linechart(type) {
                 return d.value
             });
 
-            axis = svg.append("g");
-            axis
+        axis = svg.append("g");
+        axis
             .attr("class", "axis")
             .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(x).ticks(d3.timeYear));
-            
-            svg.append("g")
-            .attr("class", "axis")
-            .call(d3.axisLeft(y).ticks(5).tickFormat(d => d + "%"));  
-            
-          
-            svg.append("text")
-            .attr('class','title')
-            .attr("x", 20 )        
-            .attr("y", 0 - (margin.top / 6))
-            .attr("text-anchor", "center")  
-            .style("font-size", "20px") 
-            .text('Percent Non-White: '+ button_value.charAt(0).toUpperCase() + button_value.slice(1));
 
-            //Adding legend manually
-            svg.append("circle").attr("cx",legendSpace-25).attr("cy",230).attr("r", 6).style("fill", colors[1])
-            svg.append("circle").attr("cx",legendSpace-25).attr("cy",260).attr("r", 6).style("fill", colors[0])
-            svg.append("text").attr("x", legendSpace-5).attr("y", 230).text("PCOE").style("font-size", "15px").attr("alignment-baseline","middle")
-            svg.append("text").attr("x", legendSpace-5).attr("y", 260).text("OHIO").style("font-size", "15px").attr("alignment-baseline","middle")
+        svg.append("g")
+            .attr("class", "axis")
+            .call(d3.axisLeft(y).ticks(5).tickFormat(d => d + "%"));
+
+
+        svg.append("text")
+            .attr('class', 'title')
+            .attr("x", 20)
+            .attr("y", 0 - (margin.top / 6))
+            .attr("text-anchor", "center")
+            .style("font-size", "20px")
+            .text('Percent Non-White: ' + button_value.charAt(0).toUpperCase() + button_value.slice(1));
+
+        //Adding legend manually
+        svg.append("circle").attr("cx", legendSpace - 25).attr("cy", 230).attr("r", 6).style("fill", colors[1])
+        svg.append("circle").attr("cx", legendSpace - 25).attr("cy", 260).attr("r", 6).style("fill", colors[0])
+        svg.append("text").attr("x", legendSpace - 5).attr("y", 230).text("PCOE").style("font-size", "15px").attr("alignment-baseline", "middle")
+        svg.append("text").attr("x", legendSpace - 5).attr("y", 260).text("OHIO").style("font-size", "15px").attr("alignment-baseline", "middle")
 
 
     });
@@ -288,11 +288,11 @@ function linechart(type) {
 //paremeters for line charts
 
 var margin = {
-        top: 30,
-        right: 20,
-        bottom: 70,
-        left: 50
-    },
+    top: 30,
+    right: 20,
+    bottom: 70,
+    left: 50
+},
     width = 950 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
 
@@ -315,8 +315,8 @@ var svg = d3.select("#linechart")
     .append("g")
     .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
-  
- 
+
+
 
 // let's start loading stuff
 
@@ -419,7 +419,6 @@ document.getElementById('both').addEventListener('click', function () {
         });
     });
 
-
     reader_new('data/both.csv');
     linechart('both');
 
@@ -462,13 +461,11 @@ $(function () {
     });
 });
 
-
 var tooltip = d3.select("body")
     .append("div")
     .style("position", "absolute")
     .style("z-index", "10")
     .style("visibility", "hidden");
-
 
 d3.select("#pulsating")
     .on("mouseover", function () {
